@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Wcf.Examples.Server.Service;
 
 namespace Wcf.Examples.Server
 {
@@ -12,7 +9,17 @@ namespace Wcf.Examples.Server
         {
             try
             {
+                Console.WriteLine("Starting server...");
+                using(var host = ServiceFactory.CreateServiceExample())
+                {
+                    host.Open();
 
+                    Console.WriteLine("Server started");
+                    Console.ReadKey();
+                }
+
+                Console.WriteLine("Stoping server...");
+                Console.WriteLine("Server stoped");
                 Console.ReadKey();
             }
             catch(Exception ex)
