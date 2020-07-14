@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Server", "Wcf.Examples.Server\Wcf.Examples.Server.csproj", "{7FB66B41-CB31-45E0-AD5D-0FFB93EC5700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Contracts", "Wcf.Examples.Contracts\Wcf.Examples.Contracts.csproj", "{CD7679D1-C81F-425B-8C5B-A50B05DABE43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Client", "Wcf.Examples.Client\Wcf.Examples.Client.csproj", "{BB949777-B438-454B-AAD2-E4CB81A5A29B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FB66B41-CB31-45E0-AD5D-0FFB93EC5700}.Debug|x64.ActiveCfg = Debug|x64
+		{7FB66B41-CB31-45E0-AD5D-0FFB93EC5700}.Debug|x64.Build.0 = Debug|x64
+		{7FB66B41-CB31-45E0-AD5D-0FFB93EC5700}.Release|x64.ActiveCfg = Release|x64
+		{7FB66B41-CB31-45E0-AD5D-0FFB93EC5700}.Release|x64.Build.0 = Release|x64
+		{CD7679D1-C81F-425B-8C5B-A50B05DABE43}.Debug|x64.ActiveCfg = Debug|x64
+		{CD7679D1-C81F-425B-8C5B-A50B05DABE43}.Debug|x64.Build.0 = Debug|x64
+		{CD7679D1-C81F-425B-8C5B-A50B05DABE43}.Release|x64.ActiveCfg = Release|x64
+		{CD7679D1-C81F-425B-8C5B-A50B05DABE43}.Release|x64.Build.0 = Release|x64
+		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Debug|x64.ActiveCfg = Debug|x64
+		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Debug|x64.Build.0 = Debug|x64
+		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Release|x64.ActiveCfg = Release|x64
+		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
