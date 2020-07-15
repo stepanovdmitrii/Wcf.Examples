@@ -14,13 +14,14 @@ namespace Wcf.Examples.Client
                     Thread.Sleep(TimeSpan.FromSeconds(3));
 
                     client.Connect();
-
+                    client.InnerChannel.Faulted += InnerChannel_Faulted;
                     for(int i = 0; i < 5; ++i)
                     {
                         var response = client.Ping();
-                        Thread.Sleep(TimeSpan.FromSeconds(5));
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
                         Console.WriteLine($"{DateTime.Now} :  {response}");
                     }
+                    Console.ReadKey();
                 }
             }
             catch(Exception ex)
@@ -28,6 +29,11 @@ namespace Wcf.Examples.Client
                 Console.WriteLine(ex.Message);
             }
             Console.ReadKey();
+        }
+
+        private static void InnerChannel_Faulted(object sender, EventArgs e)
+        {
+            Console.WriteLine($"{DateTime.Now} :  faulted");
         }
     }
 }

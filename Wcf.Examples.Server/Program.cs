@@ -9,23 +9,29 @@ namespace Wcf.Examples.Server
         {
             try
             {
-                Console.WriteLine("Starting server...");
+                Console.WriteLine($"{DateTime.Now} : starting server...");
                 using(var host = ServiceFactory.CreateServiceExample())
                 {
                     host.Open();
 
-                    Console.WriteLine("Server started");
+                    Console.WriteLine($"{DateTime.Now} : server started");
+                    host.Faulted += Host_Faulted;
                     Console.ReadKey();
                 }
 
-                Console.WriteLine("Stoping server...");
-                Console.WriteLine("Server stoped");
+                Console.WriteLine($"{DateTime.Now} : stoping server...");
+                Console.WriteLine($"{DateTime.Now}: server stoped");
                 Console.ReadKey();
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static void Host_Faulted(object sender, EventArgs e)
+        {
+            Console.WriteLine($"{DateTime.Now} : host faulted");
         }
     }
 }

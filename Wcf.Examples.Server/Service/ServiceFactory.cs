@@ -16,7 +16,6 @@ namespace Wcf.Examples.Server.Service
                 var binding = BindingFactory.CreateBinding();
                 host.AddServiceEndpoint(typeof(IServiceExample), binding, string.Empty);
 
-
                 var tmp = host;
                 host = null;
                 return tmp;
