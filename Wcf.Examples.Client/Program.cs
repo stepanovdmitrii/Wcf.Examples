@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
-using Wcf.Examples.Contracts.Async;
+using Wcf.Examples.Common;
 
 namespace Wcf.Examples.Client
 {
@@ -14,11 +13,12 @@ namespace Wcf.Examples.Client
                 using(var client = ClientFactory.CreateServiceExample())
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(3));
-
-                    client.Connect();
+                    Log.Information("Openning client...");
+                    client.Open();
+                    Log.Information("Client opened");
+                    var taskId = client.StartLongRunningTask();
+                    Log.Information("Task created: {0}", taskId);
                     client.InnerChannel.Faulted += InnerChannel_Faulted;
-                    var task = Task<string>.Factory.FromAsync((callback, state) => client.BeginLongRunningTask(TaskId.New(), callback, state), client.EndLongRunningTask, client);
-                    Console.WriteLine(task.Result);
                     Console.ReadKey();
                 }
             }
@@ -31,7 +31,7 @@ namespace Wcf.Examples.Client
 
         private static void InnerChannel_Faulted(object sender, EventArgs e)
         {
-            Console.WriteLine($"{DateTime.Now} : client faulted");
+            Log.Information("Client faulted");
         }
     }
 }

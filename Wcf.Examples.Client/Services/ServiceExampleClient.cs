@@ -1,5 +1,4 @@
-﻿using System;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Wcf.Examples.Contracts;
 using Wcf.Examples.Contracts.Async;
@@ -10,29 +9,24 @@ namespace Wcf.Examples.Client.Services
     {
         public ServiceExampleClient(Binding binding, EndpointAddress endpoint): base(binding, endpoint) { }
 
-        public IAsyncResult BeginLongRunningTask(TaskId taskId, AsyncCallback callback, object state)
-        {
-            return Channel.BeginLongRunningTask(taskId, callback, state);
-        }
-
         public void CancelTask(TaskId taskId)
         {
             Channel.CancelTask(taskId);
         }
 
-        public void Connect()
+        public string GetLongRunningTaskResult(TaskId taskId)
         {
-            base.Open();
+            return Channel.GetLongRunningTaskResult(taskId);
         }
 
-        public string EndLongRunningTask(IAsyncResult result)
+        public TaskStatus GetTaskStatus(TaskId taskId)
         {
-            return Channel.EndLongRunningTask(result);
+            return Channel.GetTaskStatus(taskId);
         }
 
-        public string Ping()
+        public TaskId StartLongRunningTask()
         {
-            return base.Channel.Ping();
+            return Channel.StartLongRunningTask();
         }
     }
 }

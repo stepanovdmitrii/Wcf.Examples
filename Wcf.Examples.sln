@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Contracts", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Client", "Wcf.Examples.Client\Wcf.Examples.Client.csproj", "{BB949777-B438-454B-AAD2-E4CB81A5A29B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wcf.Examples.Common", "Wcf.Examples.Common\Wcf.Examples.Common.csproj", "{92B7A776-9D54-4F55-AD20-DAD68F8BC86F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Debug|x64.Build.0 = Debug|x64
 		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Release|x64.ActiveCfg = Release|x64
 		{BB949777-B438-454B-AAD2-E4CB81A5A29B}.Release|x64.Build.0 = Release|x64
+		{92B7A776-9D54-4F55-AD20-DAD68F8BC86F}.Debug|x64.ActiveCfg = Debug|x64
+		{92B7A776-9D54-4F55-AD20-DAD68F8BC86F}.Debug|x64.Build.0 = Debug|x64
+		{92B7A776-9D54-4F55-AD20-DAD68F8BC86F}.Release|x64.ActiveCfg = Release|x64
+		{92B7A776-9D54-4F55-AD20-DAD68F8BC86F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

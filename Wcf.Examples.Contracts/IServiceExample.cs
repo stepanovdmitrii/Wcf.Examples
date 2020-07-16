@@ -4,18 +4,20 @@ using Wcf.Examples.Contracts.Async;
 
 namespace Wcf.Examples.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(SessionMode = SessionMode.Required)]
     public interface IServiceExample
     {
-        [OperationContract]
-        string Ping();
 
-        [OperationContract(AsyncPattern = true)]
-        IAsyncResult BeginLongRunningTask(TaskId taskId, AsyncCallback callback, object state);
+        [OperationContract]
+        TaskId StartLongRunningTask();
+
+        [OperationContract]
+        string GetLongRunningTaskResult(TaskId taskId);
+
+        [OperationContract]
+        TaskStatus GetTaskStatus(TaskId taskId);
 
         [OperationContract]
         void CancelTask(TaskId taskId);
-
-        string EndLongRunningTask(IAsyncResult result);
     }
 }

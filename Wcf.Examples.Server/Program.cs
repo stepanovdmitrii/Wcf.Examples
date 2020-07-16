@@ -1,5 +1,7 @@
 ﻿using System;
+using Wcf.Examples.Server.Async;
 using Wcf.Examples.Server.Service;
+using Wcf.Examples.Common;
 
 namespace Wcf.Examples.Server
 {
@@ -9,18 +11,17 @@ namespace Wcf.Examples.Server
         {
             try
             {
-                Console.WriteLine($"{DateTime.Now} : starting server...");
-                using(var host = ServiceFactory.CreateServiceExample())
+                Log.Information("Starting server...");
+                using(var taskController = new TaskController())
+                using(var host = ServiceFactory.CreateServiceExample(taskController))
                 {
                     host.Open();
-
-                    Console.WriteLine($"{DateTime.Now} : server started");
+                    Log.Information("Server started");
                     host.Faulted += Host_Faulted;
                     Console.ReadKey();
                 }
 
-                Console.WriteLine($"{DateTime.Now} : stoping server...");
-                Console.WriteLine($"{DateTime.Now}: server stoped");
+                Log.Information("Server stopped");
                 Console.ReadKey();
             }
             catch(Exception ex)

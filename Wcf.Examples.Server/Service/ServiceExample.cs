@@ -1,44 +1,40 @@
-﻿using System;
-using System.Threading;
+﻿using System.ServiceModel;
 using Wcf.Examples.Contracts;
 using Wcf.Examples.Contracts.Async;
 using Wcf.Examples.Server.Async;
 
 namespace Wcf.Examples.Server.Service
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     internal sealed class ServiceExample : IServiceExample
     {
-        private readonly ITaskController _taskController = new TaskController();
+        private readonly ITaskController _taskController;
 
-        public IAsyncResult BeginLongRunningTask(TaskId taskId, AsyncCallback callback, object state)
+        public ServiceExample(ITaskController taskController)
         {
-            return _taskController.ExecuteAsync<string>((token) =>
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(1));
-                return "response";
-            }, taskId, callback, state);
+            _taskController = taskController;
         }
 
         public void CancelTask(TaskId taskId)
         {
-            _taskController.Cancel(taskId);
+            return;
         }
 
-        public string EndLongRunningTask(IAsyncResult result)
+        public string GetLongRunningTaskResult(TaskId taskId)
         {
-            if (result != null)
-            {
-                var res = result as AsyncResult<string>;
-                if (res == null) throw new InvalidOperationException();
-                _taskController.Remove(res.TaskId);
-                return res.Result;
-            }
-            throw new ArgumentNullException(nameof(result));
+            return "result";
         }
 
-        public string Ping()
+        public TaskStatus GetTaskStatus(TaskId taskId)
         {
-            return "Pong!";
+            var status = new TaskStatus();
+            status.TaskState = State.Completed;
+            return status;
+        }
+
+        public TaskId StartLongRunningTask()
+        {
+            return TaskId.New();
         }
     }
 }
