@@ -67,7 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async\ITask.cs" />
+    <Compile Include="Async\TaskContext.cs" />
     <Compile Include="Async\TaskController.cs" />
+    <Compile Include="Extensions\StateExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\InstanceProviderBehaviour.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Service\ServiceExampleInstanceProvider.cs" />
     <Compile Include="Service\ServiceFactory.cs" />
     <Compile Include="Service\ServiceHost.cs" />
+    <Compile Include="Service\TaskStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

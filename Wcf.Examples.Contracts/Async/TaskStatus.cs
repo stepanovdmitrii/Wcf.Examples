@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Wcf.Examples.Contracts.Async
 {
@@ -10,9 +9,9 @@ namespace Wcf.Examples.Contracts.Async
         public State TaskState { get; set; }
 
         [DataMember]
-        public TimeSpan NextAttemptTimeOut { get; set; }
+        public string Details { get; set; }
 
         [DataMember]
-        public string Details { get; set; }
+        public int PercentCompleted { get; set; }
     }
 }

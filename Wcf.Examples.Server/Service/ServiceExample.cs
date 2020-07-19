@@ -2,6 +2,7 @@
 using Wcf.Examples.Contracts;
 using Wcf.Examples.Contracts.Async;
 using Wcf.Examples.Server.Async;
+using Wcf.Examples.Server.Extensions;
 
 namespace Wcf.Examples.Server.Service
 {
@@ -17,24 +18,23 @@ namespace Wcf.Examples.Server.Service
 
         public void CancelTask(TaskId taskId)
         {
-            return;
+            _taskController.CancelTask(taskId);
         }
 
         public string GetLongRunningTaskResult(TaskId taskId)
         {
-            return "result";
+            return _taskController.GetResult<string>(taskId);
         }
 
         public TaskStatus GetTaskStatus(TaskId taskId)
         {
-            var status = new TaskStatus();
-            status.TaskState = State.Completed;
-            return status;
+            var state = _taskController.GetState(taskId);
+            return state.ToStatus();
         }
 
         public TaskId StartLongRunningTask()
         {
-            return TaskId.New();
+            return _taskController.StartNew(new TaskStub());
         }
     }
 }
