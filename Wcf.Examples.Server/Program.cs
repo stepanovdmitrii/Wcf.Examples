@@ -2,6 +2,7 @@
 using Wcf.Examples.Server.Async;
 using Wcf.Examples.Server.Service;
 using Wcf.Examples.Common;
+using Wcf.Examples.Server.Configuration;
 
 namespace Wcf.Examples.Server
 {
@@ -12,7 +13,8 @@ namespace Wcf.Examples.Server
             try
             {
                 Log.Information("Starting server...");
-                using(var taskController = new TaskController())
+                using(var actionExecutor = new MultiThreadActionExecutor(Config.ThreadsCount))
+                using(var taskController = new TaskController(actionExecutor))
                 using(var host = ServiceFactory.CreateServiceExample(taskController))
                 {
                     host.Open();

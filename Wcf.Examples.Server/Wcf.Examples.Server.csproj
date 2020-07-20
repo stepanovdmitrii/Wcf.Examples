@@ -67,9 +67,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async\IAction.cs" />
+    <Compile Include="Async\IActionExecutor.cs" />
     <Compile Include="Async\ITask.cs" />
+    <Compile Include="Async\MultiThreadActionExecutor.cs" />
     <Compile Include="Async\TaskContext.cs" />
     <Compile Include="Async\TaskController.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="Extensions\StateExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

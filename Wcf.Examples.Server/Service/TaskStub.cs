@@ -8,7 +8,7 @@ namespace Wcf.Examples.Server.Service
     {
         public void Execute(CancellationToken cancellationToken)
         {
-            cancellationToken.WaitHandle.WaitOne(TimeSpan.FromMinutes(5));
+            cancellationToken.WaitHandle.WaitOne(TimeSpan.FromSeconds(30));
         }
 
         public string GetResult()

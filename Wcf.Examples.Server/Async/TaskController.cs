@@ -17,9 +17,11 @@ namespace Wcf.Examples.Server.Async
     {
         private readonly Dictionary<TaskId, TaskContext> _tasks;
         private readonly object _guard;
+        private readonly IActionExecutor _actionExecutor;
 
-        public TaskController()
+        public TaskController(IActionExecutor actionExecutor)
         {
+            _actionExecutor = actionExecutor;
             _tasks = new Dictionary<TaskId, TaskContext>();
             _guard = new object();
         }
@@ -75,7 +77,7 @@ namespace Wcf.Examples.Server.Async
                     {
                         id = TaskId.New();
                     }
-                    context = new TaskContext(id, task);
+                    context = new TaskContext(id, task, _actionExecutor);
                     _tasks[id] = context;
                 }
                 inserted = true;
@@ -83,7 +85,7 @@ namespace Wcf.Examples.Server.Async
                 context = null;
                 return id;
             }
-            finally
+            catch
             {
                 if (inserted)
                 {
@@ -92,6 +94,10 @@ namespace Wcf.Examples.Server.Async
                         _tasks.Remove(id);
                     }
                 }
+                throw;
+            }
+            finally
+            {
                 context?.Dispose();
             }
         }
@@ -108,10 +114,10 @@ namespace Wcf.Examples.Server.Async
             try
             {
                 if (false == _tasks.TryGetValue(taskId, out context)) throw new InvalidOperationException("Task not found");
-
+                _tasks.Remove(taskId);
                 var tmp = context;
                 context = null;
-                return context;
+                return tmp;
             }
             finally
             {
