@@ -24,6 +24,11 @@ namespace Wcf.Examples.Client.Services
             return Channel.GetTaskStatus(taskId);
         }
 
+        public void Ping()
+        {
+            Channel.Ping();
+        }
+
         public TaskId StartLongRunningTask()
         {
             return Channel.StartLongRunningTask();

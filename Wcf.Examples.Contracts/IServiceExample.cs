@@ -7,6 +7,8 @@ namespace Wcf.Examples.Contracts
     [ServiceContract(SessionMode = SessionMode.Required)]
     public interface IServiceExample
     {
+        [OperationContract]
+        void Ping();
 
         [OperationContract]
         TaskId StartLongRunningTask();
