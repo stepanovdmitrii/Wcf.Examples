@@ -25,5 +25,25 @@ namespace Wcf.Examples.Contracts.Async
         }
 
         public static TaskId New() => new TaskId(Guid.NewGuid());
+
+        public override bool Equals(object obj)
+        {
+            return obj is TaskId && Equals((TaskId)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _id.GetHashCode();
+        }
+
+        public static bool operator ==(TaskId left, TaskId right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TaskId left, TaskId right)
+        {
+            return !(left == right);
+        }
     }
 }
